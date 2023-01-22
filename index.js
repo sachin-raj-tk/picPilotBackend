@@ -21,6 +21,8 @@ app.use(express.static('public'))
 app.use('/images',express.static("images"))
 
 
+app.options('*', cors())
+
 
 
 
