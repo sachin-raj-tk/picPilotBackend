@@ -31,7 +31,11 @@ const UserSchema = mongoose.Schema(
         country:String,
         followers:[],
         following:[],
-        verified:Boolean
+        verified:Boolean,
+        active:{
+            type:Boolean,
+            default:true
+        }
     },{
         timestamps:true
     }

@@ -50,6 +50,10 @@ export const loginUser = async (req, res) => {
       if (!validity) {
         res.status(400).json("wrong password");
       } else {
+        const active = user.active
+        if(!active){
+          return res.status(400).json("you has been blocked")
+        }
         const token = jwt.sign(
           {
             username: user.username,

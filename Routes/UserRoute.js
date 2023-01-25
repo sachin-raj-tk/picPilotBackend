@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteUser, followUser, getAllUsers, getUser, getUserData, unfollowUser, updateUser } from '../Controllers/UserController.js';
+import { blockuser, deleteUser, followUser, getAllUsers, getUser, getUserData, unfollowUser, updateUser } from '../Controllers/UserController.js';
 import authMiddleWare from '../MiddleWare/authMiddleWare.js';
 const router = express.Router();
 
@@ -10,6 +10,7 @@ router.delete('/:id',authMiddleWare,deleteUser)
 router.put('/:id/follow', authMiddleWare,followUser)
 router.put('/:id/unfollow', authMiddleWare,unfollowUser)
 router.post('/getdata',getUserData)
+router.post('/blockuser/:id',blockuser)
 
 
 export default router;

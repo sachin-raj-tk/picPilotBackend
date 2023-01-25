@@ -179,3 +179,17 @@ export const getUserData = async(req,res)=>{
   res.json(peopleData.slice(0, 10))
   console.log(peopleData,'hello from getuserdata')
 }
+
+export const blockuser = async(req,res)=>{
+  console.log(req.body)
+  const active = req.body.data
+  console.log(active)
+  try {
+    
+    active?await UserModel.findByIdAndUpdate(req.params.id,{$set:{active:false}},{new:true}):await UserModel.findByIdAndUpdate(req.params.id,{$set:{active:true}},{new:true});
+    active?res.status(200).json('user blocked'):res.status(200).json('user unblocked');
+  } catch (error) {
+     res.status(500).json(error)
+      
+  }
+}
