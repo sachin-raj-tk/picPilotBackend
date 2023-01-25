@@ -1,5 +1,5 @@
 import express from 'express';
-import { blockuser, deleteUser, followUser, getAllUsers, getUser, getUserData, unfollowUser, updateUser } from '../Controllers/UserController.js';
+import { blockuser, deleteUser, followUser, getAllUsers, getUser, getUserData, savepost, unfollowUser, updateUser } from '../Controllers/UserController.js';
 import authMiddleWare from '../MiddleWare/authMiddleWare.js';
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.put('/:id/follow', authMiddleWare,followUser)
 router.put('/:id/unfollow', authMiddleWare,unfollowUser)
 router.post('/getdata',getUserData)
 router.post('/blockuser/:id',blockuser)
-
+router.post('/savepostapi/:id',savepost)
 
 export default router;
 

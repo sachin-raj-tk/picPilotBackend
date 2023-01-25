@@ -31,6 +31,7 @@ const UserSchema = mongoose.Schema(
         country:String,
         followers:[],
         following:[],
+        savedposts:[],
         verified:Boolean,
         active:{
             type:Boolean,

@@ -193,3 +193,23 @@ export const blockuser = async(req,res)=>{
       
   }
 }
+
+
+// save or unsave a post
+
+export const savepost=async(req,res)=>{
+   const id = req.params.id;
+   const {data} = req.body
+   try {
+    const user = await UserModel.findById(id);
+    if(!user.savedposts.includes(data)){
+      await user.updateOne({$push:{savedposts:data}})
+      res.status(200).json("post saved")
+    }else{
+      await user.updateOne({$pull:{savedposts:data}})
+      res.status(200).json("post removed from saved posts")
+    }
+   } catch (error) {
+    res.status(500).json(error)
+   }
+}
