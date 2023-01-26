@@ -36,7 +36,11 @@ const UserSchema = mongoose.Schema(
         active:{
             type:Boolean,
             default:true
-        }
+        },
+        isFamous:{
+            type:String,
+            default:"notFamous"
+        },
     },{
         timestamps:true
     }

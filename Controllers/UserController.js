@@ -1,7 +1,7 @@
 import UserModel from "../Models/userModel.js";
 import bcrypt, { genSalt } from 'bcrypt'
 import jwt from 'jsonwebtoken'
-
+import AdminnotificationModel from "../Models/AdminnotificationModel.js";
 
 
 // get all users
@@ -214,4 +214,27 @@ export const savepost=async(req,res)=>{
    }
 }
 
+
+//request for setting user account verified with blue tick
+
+export const isFamousRequest = async(req,res)=>{
+  const id = req.params.id;
+  console.log(id,'helloid isfamousrequest');
+  try {
+     const requests =await AdminnotificationModel.find()
+     console.log(requests,'hello request isfamousrequest');
+     if(requests[0].verificationRequests.includes(id)){
+      
+
+        return res.status(400).json("verification")
+      
+    }else{
+      await requests[0].updateOne({$push:{verificationRequests:id}})
+      await UserModel.findByIdAndUpdate(id,{$set:{isFamous:"pending"}},{new:true})
+      res.status(200).json("request send")
+    }
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
 

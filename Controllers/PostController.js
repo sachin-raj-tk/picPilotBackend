@@ -148,6 +148,9 @@ export const deleteComment = async(req,res)=>{
 }
 
 
+
+//report a post
+
 export const reportPost = async(req,res) =>{
     const id = req.params.id
     console.log(id,'heloo')
@@ -155,6 +158,9 @@ export const reportPost = async(req,res) =>{
     
     const response = await PostModel.findByIdAndUpdate(id,{$push:{reports:req.body}})
 }
+
+
+//show reported posts for admin
 
 export const getReportedPosts = async(req,res) =>{
     const posts = await PostModel.find()
