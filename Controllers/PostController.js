@@ -1,6 +1,7 @@
 import PostModel from "../Models/postModel.js";
 import mongoose from "mongoose";
 import UserModel from "../Models/userModel.js";
+import router from "../Routes/PostRoute.js";
 
 
 //Create new Post
@@ -144,4 +145,20 @@ export const deleteComment = async(req,res)=>{
     const post = await PostModel.findById(req.params.id)
     console.log(post)
     const removeComment = await post.updateOne({$pull:{comments:{_id:commentId}}})
+}
+
+
+export const reportPost = async(req,res) =>{
+    const id = req.params.id
+    console.log(id,'heloo')
+    console.log(req.body,'report post')
+    
+    const response = await PostModel.findByIdAndUpdate(id,{$push:{reports:req.body}})
+}
+
+export const getReportedPosts = async(req,res) =>{
+    const posts = await PostModel.find()
+    const reportedPosts = posts.filter((post)=>post.reports.length > 0)
+    console.log(posts,'posts',reportedPosts,'posts with reports')
+    res.status(200).json(reportedPosts)
 }

@@ -25,6 +25,16 @@ const postSchema = mongoose.Schema({
             type:String,
             required:true
         }
+    }],
+    reports:[{
+        reportedUser:{
+            type:String,
+            required:true
+        },
+        reason:{
+            type:String,
+            required:true
+        }
     }]
 },{
     timestamps: true
