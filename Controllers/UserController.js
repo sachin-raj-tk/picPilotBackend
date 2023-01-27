@@ -256,3 +256,20 @@ export const getVerifyNotifications = async(req,res)=>{
 
 
 }
+
+
+//admin making user isFamous = "true"
+
+
+export const makeIsFamous =async(req,res)=>{
+   const id = req.params.id
+   try {
+    const userUpdated = await UserModel.findByIdAndUpdate(id,{$set:{isFamous:"true"}},{new:true})
+    const adminNotificationsUpdated = await AdminnotificationModel.updateOne({$pull:{verificationRequests:id}})
+    console.log(userUpdated);
+    res.status(200).json("user acount is verified now") 
+   } catch (error) {
+      res.status(500).json(error)
+   }
+   
+}
