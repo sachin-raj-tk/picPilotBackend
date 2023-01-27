@@ -168,3 +168,23 @@ export const getReportedPosts = async(req,res) =>{
     console.log(posts,'posts',reportedPosts,'posts with reports')
     res.status(200).json(reportedPosts)
 }
+
+//set removed true for reported posts
+
+export const reportedPostRemove = async(req,res) => {
+    console.log("evide ethiyo");
+    const postId = req.params.id
+    try {
+        const removedFieldUpdate = await PostModel.findById(postId)
+        if(removedFieldUpdate.removed){
+            const response = await removedFieldUpdate.updateOne({$set:{removed:false}})
+            res.status(200).json("post unblocked")
+        }else{
+            const response = await removedFieldUpdate.updateOne({$set:{removed:true}})
+            res.status(200).json("post blocked successfully")
+
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}

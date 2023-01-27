@@ -8,6 +8,10 @@ const postSchema = mongoose.Schema({
     desc: String,
     likes: [],
     image: String,
+    removed:{
+        type:Boolean,
+        default:false
+    },
     comments:[{
         commentedUser:{
             type:String,
