@@ -238,3 +238,21 @@ export const isFamousRequest = async(req,res)=>{
   }
 }
 
+
+//get verify notifications for the admin
+
+export const getVerifyNotifications = async(req,res)=>{
+  console.log('notification ethitind');
+  try {
+    const adminNotifications = await AdminnotificationModel.find()
+    const verificationNotifications = adminNotifications[0].verificationRequests
+    console.log(verificationNotifications);
+    res.status(200).json(verificationNotifications)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+  
+  
+
+
+}

@@ -1,5 +1,5 @@
 import express from 'express';
-import { blockuser, deleteUser, followUser, getAllUsers, getUser, getUserData, isFamousRequest, savepost, unfollowUser, updateUser } from '../Controllers/UserController.js';
+import { blockuser, deleteUser, followUser, getAllUsers, getUser, getUserData, getVerifyNotifications, isFamousRequest, savepost, unfollowUser, updateUser } from '../Controllers/UserController.js';
 import authMiddleWare from '../MiddleWare/authMiddleWare.js';
 const router = express.Router();
 
@@ -13,6 +13,7 @@ router.post('/getdata',getUserData)
 router.post('/blockuser/:id',blockuser)
 router.post('/savepostapi/:id',savepost)
 router.post('/isfamousrequest/:id',isFamousRequest)
+router.post('/getverifynotifications',getVerifyNotifications)
 
 export default router;
 
