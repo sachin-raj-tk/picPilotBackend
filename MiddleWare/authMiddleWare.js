@@ -9,12 +9,17 @@ const authMiddleWare = async(req,res,next) => {
         console.log(token);
         if(token){
             const decoded = jwt.verify(token, secret);
-            console.log(decoded);
-            req.body._id = decoded?.id;
+            console.log(decoded,'decoded');
+            if(decoded){
+                req.body._id = decoded?.id;
+                console.log(Date.now());
+                next();    
+            }
+            
         }
-        next();
     }catch (error){
         console.log(error);
+        res.status(500).json("token expired")
     }
 
 }

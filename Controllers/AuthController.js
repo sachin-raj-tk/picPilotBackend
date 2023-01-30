@@ -60,7 +60,7 @@ export const loginUser = async (req, res) => {
             id: user._id,
           },
           process.env.JWT_KEY,
-          { expiresIn: "1h" }
+          { expiresIn: "61s" }
         );
         res.status(200).json({ user, token });
       }
@@ -114,7 +114,7 @@ export const verifyotp = async (req, res) => {
                 id: user._id,
               },
               process.env.JWT_KEY,
-              { expiresIn: "1h" }
+              { expiresIn: "61s" }
             );
             res.status(200).json({ user, token });
           }

@@ -9,12 +9,12 @@ router.put('/:id',authMiddleWare, updateUser)
 router.delete('/:id',authMiddleWare,deleteUser)
 router.put('/:id/follow', authMiddleWare,followUser)
 router.put('/:id/unfollow', authMiddleWare,unfollowUser)
-router.post('/getdata',getUserData)
-router.post('/blockuser/:id',blockuser)
-router.post('/savepostapi/:id',savepost)
-router.post('/isfamousrequest/:id',isFamousRequest)
-router.post('/getverifynotifications',getVerifyNotifications)
-router.post('/makeisfamous/:id',makeIsFamous)
+router.post('/getdata',authMiddleWare,getUserData)
+router.post('/blockuser/:id',authMiddleWare,blockuser)
+router.post('/savepostapi/:id',authMiddleWare,savepost)
+router.post('/isfamousrequest/:id',authMiddleWare,isFamousRequest)
+router.post('/getverifynotifications',authMiddleWare,getVerifyNotifications)
+router.post('/makeisfamous/:id',authMiddleWare,makeIsFamous)
 
 
 export default router;
